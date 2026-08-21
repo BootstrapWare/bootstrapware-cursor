@@ -17,7 +17,7 @@
       "BSW_SECRET": {
         "type": "string",
         "title": "Bootstrapware secret key",
-        "description": "Test or live secret from https://app.bootstrapware.co/importer/keys (bsw_test_sec_… or bsw_live_sec_…). Never put this in client code."
+        "description": "Test or live secret from https://app.bootstrapware.co/importer/keys (bsw_test_sec_ or bsw_live_sec_). Never put this in client code."
       }
     },
     "required": ["BSW_SECRET"]

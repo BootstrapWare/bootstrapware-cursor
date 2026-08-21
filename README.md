@@ -13,72 +13,58 @@ Spreadsheet contents never leave the customer's browser. MCP tools manage **impo
 
 ## Install
 
-### Marketplace (when listed)
+### Preferred: OAuth Connect
 
-Install **Bootstrapware Importer** from the Cursor marketplace, then set the `BSW_SECRET` plugin variable under **Plugins → Configure**.
+Install the plugin (marketplace or local), open **Tools & MCP**, and click **Connect** on Bootstrapware Importer. Sign in at `app.bootstrapware.co` and approve access. No secret key in `mcp.json`.
 
-### Local / from this repo
+Or use **Add to Cursor (OAuth)** on https://app.bootstrapware.co/importer/keys.
 
-1. Clone this repository.
-2. Copy or symlink it into Cursor's local plugins folder as `bootstrapware-importer`:
-
-```text
-# Windows (PowerShell)
-New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\plugins\local\bootstrapware-importer" -Target "D:\Projects\bootstrapware-cursor"
-
-# macOS / Linux
-ln -s /path/to/bootstrapware-cursor ~/.cursor/plugins/local/bootstrapware-importer
-```
-
-3. Reload Cursor (or restart).
-4. Open **Plugins → Bootstrapware Importer → Configure** and set `BSW_SECRET`.
-
-### Manual MCP only (without the plugin)
-
-Mint a **test secret** at https://app.bootstrapware.co/importer/keys, then merge into `~/.cursor/mcp.json`:
+URL-only config:
 
 ```json
 {
   "mcpServers": {
     "bootstrapware-importer": {
       "type": "http",
-      "url": "https://importer.bootstrapware.co/mcp",
-      "headers": {
-        "Authorization": "Bearer bsw_test_sec_PASTE_YOUR_KEY"
-      }
+      "url": "https://importer.bootstrapware.co/mcp"
     }
   }
 }
 ```
 
-Prefer the Keys page **Add to Cursor** button when available.
+### Secret key fallback
+
+If OAuth Connect is unavailable, mint a test secret at Keys and paste Bearer auth into `mcp.json` (see Keys page **Add to Cursor (secret fallback)**).
+
+### Local / from this repo
+
+1. Clone this repository.
+2. Junction/symlink into `~/.cursor/plugins/local/bootstrapware-importer`.
+3. Reload Cursor and Connect via OAuth.
 
 ## First-run checklist
 
-1. Create a **test** secret (`bsw_test_sec_…`) in the dashboard.
-2. Set plugin variable `BSW_SECRET` (or paste into `mcp.json` as above).
-3. Confirm MCP tools appear (e.g. `list_importers`, `list_capabilities`).
+1. Install plugin or URL-only MCP config.
+2. Click **Connect** → sign in → Allow.
+3. Confirm tools (`list_importers`, `list_capabilities`).
 4. Smoke prompt:
 
 ```text
-Using bootstrapware-importer MCP, list my importers and create a draft named "Cursor plugin smoke" with email (required) and name fields, then publish it.
+Using bootstrapware-importer MCP, list my importers and create a draft named "Cursor OAuth smoke" with email (required) and name fields, then publish it.
 ```
+
+5. Optional: revoke the connection on Keys → Active Cursor connections and confirm tools fail until Connect again.
 
 ## Plugin layout
 
 ```text
-.cursor-plugin/plugin.json   # manifest + BSW_SECRET variable
-mcp.json                     # HTTP MCP with Bearer ${BSW_SECRET}
+.cursor-plugin/plugin.json
+mcp.json                     # HTTP MCP URL only (OAuth)
 skills/bootstrapware-importer/SKILL.md
 assets/logo.png
 ```
 
 ## Security
 
-- Never commit secrets.
-- Never put secret keys in browser/client code.
+- Prefer OAuth; never put secrets in client/browser code.
 - Never send spreadsheet file contents or parsed rows to Bootstrapware or through MCP tools.
-
-## Marketplace submit
-
-Submit this public repo at https://cursor.com/marketplace/publish once you are ready for review. Do not claim a marketplace listing until Cursor approves it.

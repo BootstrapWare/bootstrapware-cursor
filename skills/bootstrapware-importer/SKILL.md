@@ -65,7 +65,9 @@ Optional `apiBaseUrl` defaults to `https://importer.bootstrapware.co`.
 
 Endpoint: `https://importer.bootstrapware.co/mcp`
 
-Authenticate with a secret key (`bsw_test_sec_` or `bsw_live_sec_`) as `Authorization: Bearer`. Set the plugin variable `BSW_SECRET` from **Plugins → Configure** (mint at https://app.bootstrapware.co/importer/keys).
+**Preferred:** OAuth Connect — URL-only config, click Connect in Cursor, sign in at https://app.bootstrapware.co and Allow. No secret in `mcp.json`.
+
+**Fallback:** secret key (`bsw_test_sec_` / `bsw_live_sec_`) as `Authorization: Bearer` (mint at https://app.bootstrapware.co/importer/keys).
 
 **Never put spreadsheet file contents or row payloads into MCP tools.**
 

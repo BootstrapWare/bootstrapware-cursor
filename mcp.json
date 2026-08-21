@@ -2,10 +2,7 @@
   "mcpServers": {
     "bootstrapware-importer": {
       "type": "http",
-      "url": "https://importer.bootstrapware.co/mcp",
-      "headers": {
-        "Authorization": "Bearer ${BSW_SECRET}"
-      }
+      "url": "https://importer.bootstrapware.co/mcp"
     }
   }
 }

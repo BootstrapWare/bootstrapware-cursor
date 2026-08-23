@@ -93,7 +93,7 @@ Local `fields` schema remains free forever.
 
 ## Field types
 
-`string` | `number` | `date` | `email` | `enum`
+`string` | `number` | `date` | `email` | `enum` | `boolean` | `url`
 
 `enum` requires `enumValues`.
 

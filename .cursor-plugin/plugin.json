@@ -1,14 +1,14 @@
 {
-  "name": "bootstrapware-importer",
-  "displayName": "Bootstrapware Importer",
-  "version": "1.1.0",
-  "description": "Configure hosted CSV/Excel importers from Cursor via MCP (OAuth Connect)",
+  "name": "bootstrapware",
+  "displayName": "Bootstrapware",
+  "version": "1.2.0",
+  "description": "Configure Bootstrapware Importer and Feedback from Cursor via MCP (OAuth Connect)",
   "author": {
     "name": "Bootstrapware"
   },
-  "homepage": "https://bootstrapware.co/importer",
+  "homepage": "https://bootstrapware.co",
   "repository": "https://github.com/BootstrapWare/bootstrapware-cursor",
   "license": "MIT",
-  "keywords": ["importer", "csv", "excel", "mcp", "bootstrapware", "oauth"],
+  "keywords": ["importer", "feedback", "csv", "mcp", "bootstrapware", "oauth"],
   "logo": "assets/logo.png"
 }

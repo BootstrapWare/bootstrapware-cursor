@@ -6,18 +6,20 @@ Use this after the GitHub repo is public and you are ready for Cursor review. **
 
 ## Listing copy (paste into https://cursor.com/marketplace/publish)
 
-- **Name:** Bootstrapware Importer
+- **Name:** Bootstrapware
 - **Source:** https://github.com/BootstrapWare/bootstrapware-cursor
-- **Homepage:** https://bootstrapware.co/importer
-- **Short description:** Configure hosted CSV/Excel importers from Cursor via MCP (OAuth Connect).
+- **Homepage:** https://bootstrapware.co
+- **Short description:** Configure Bootstrapware Importer and Feedback from Cursor via MCP (OAuth Connect).
 - **Longer description:**
 
 ```
-Bootstrapware Importer lets a coding agent create, draft, and publish hosted CSV / TSV / XLSX importer schemas from Cursor. Prefer OAuth Connect (URL-only MCP, no secret in mcp.json). Secret-key Bearer auth is a fallback.
+Bootstrapware MCP servers for Cursor: Importer (CSV/Excel schemas) and Feedback (board config). Prefer OAuth Connect (URL-only mcp.json). Secret-key Bearer auth is a fallback.
 
-Spreadsheet contents never leave the customer's browser. MCP tools manage configuration only: list_importers, get_importer, create_importer, update_draft, publish_importer, get_published_config, list_capabilities.
+Never send spreadsheet rows or feedback post bodies through MCP. Tools manage configuration only.
 
-Dashboard for keys, webhooks, delete, branding, and billing: https://app.bootstrapware.co/importer/keys
+Importer MCP: https://importer.bootstrapware.co/mcp
+Feedback MCP: https://feedback.bootstrapware.co/mcp
+Keys: https://app.bootstrapware.co/importer/keys and /feedback/keys
 ```
 
 ## 1. Confirm the public repo
@@ -25,27 +27,18 @@ Dashboard for keys, webhooks, delete, branding, and billing: https://app.bootstr
 - [x] Repo is `BootstrapWare/bootstrapware-cursor`
 - [x] Default branch is `main`
 - [x] `LICENSE` is MIT
-- [x] `.cursor-plugin/plugin.json`, `mcp.json`, skill, and `assets/logo.png` are present
+- [x] `.cursor-plugin/plugin.json`, `mcp.json`, skills (importer + feedback), and `assets/logo.png` are present
 - [x] README does not claim the marketplace listing is already live
 
-## 2. Local smoke (already done once)
+## 2. Local smoke
 
-- [x] Local plugin junction/symlink works under `~/.cursor/plugins/local/bootstrapware-importer`
-- [x] MCP tools appear (`list_importers`, `list_capabilities`, etc.)
+- [ ] Local plugin junction works; Connect OAuth for both MCP servers
+- [ ] Importer tools: `list_importers`, `list_capabilities`
+- [ ] Feedback tools: `list_boards`, `list_capabilities`
 
 ## 3. Submit to Cursor marketplace
 
 1. Open https://cursor.com/marketplace/publish
-2. Submit **Bootstrapware Importer** pointing at https://github.com/BootstrapWare/bootstrapware-cursor
+2. Submit **Bootstrapware** pointing at https://github.com/BootstrapWare/bootstrapware-cursor
 3. Wait for Cursor review / approval
-4. Only after approval, update product docs to say the marketplace install is available
-
-Submission itself requires a logged-in Cursor account. An agent cannot complete Cursor's review on your behalf.
-
-## 4. Until marketplace is approved
-
-Prefer the dashboard Keys page **Add to Cursor** button for MCP setup:
-
-https://app.bootstrapware.co/importer/keys
-
-Optional: clone/symlink this repo as a local Cursor plugin (see README).
+4. Only then mention the listing on marketing / docs

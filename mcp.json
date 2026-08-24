@@ -3,6 +3,10 @@
     "bootstrapware-importer": {
       "type": "http",
       "url": "https://importer.bootstrapware.co/mcp"
+    },
+    "bootstrapware-feedback": {
+      "type": "http",
+      "url": "https://feedback.bootstrapware.co/mcp"
     }
   }
 }

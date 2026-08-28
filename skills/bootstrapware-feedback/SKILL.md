@@ -11,7 +11,7 @@ Embeddable feature-request board: list, submit, vote, fixed statuses.
 
 **Modes**
 
-- **Local / free:** `createLocalAdapter` — demo and development.
+- **Local / free:** `createLocalAdapter` (demo and development).
 - **BYO ($9):** you store posts via `FeedbackAdapter`. Bootstrapware hosts board config only.
 - **Hosted ($19):** Bootstrapware stores posts/votes. Customer moderates in the dashboard.
 
@@ -57,7 +57,7 @@ Bootstrapware does **not** authenticate board visitors. Your app asserts opaque 
 
 Endpoint: `https://feedback.bootstrapware.co/mcp`
 
-**Preferred:** OAuth Connect — URL-only config, Connect in Cursor, sign in at https://app.bootstrapware.co.
+**Preferred:** OAuth Connect: URL-only config, Connect in Cursor, sign in at https://app.bootstrapware.co.
 
 **Fallback:** secret key as `Authorization: Bearer` (mint at https://app.bootstrapware.co/feedback/keys).
 

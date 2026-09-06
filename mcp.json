@@ -7,6 +7,10 @@
     "bootstrapware-feedback": {
       "type": "http",
       "url": "https://feedback.bootstrapware.co/mcp"
+    },
+    "bootstrapware-chat": {
+      "type": "http",
+      "url": "https://chat.bootstrapware.co/mcp"
     }
   }
 }

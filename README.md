@@ -1,15 +1,15 @@
 # Bootstrapware Cursor plugin
 
-Configure **Importer** and **Feedback** from Cursor via MCP, plus agent skills for `@bootstrapware/importer` and `@bootstrapware/feedback`.
+Configure **Importer**, **Feedback**, and **Chat** from Cursor via MCP, plus agent skills for `@bootstrapware/importer`, `@bootstrapware/feedback`, and `@bootstrapware/chat`.
 
-| | Importer | Feedback |
-| --- | --- | --- |
-| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback |
-| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` |
-| Keys | https://app.bootstrapware.co/importer/keys | https://app.bootstrapware.co/feedback/keys |
-| License | MIT | MIT |
+| | Importer | Feedback | Chat |
+| --- | --- | --- | --- |
+| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback | https://bootstrapware.co/chat |
+| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` | `https://chat.bootstrapware.co/mcp` |
+| Keys | https://app.bootstrapware.co/importer/keys | https://app.bootstrapware.co/feedback/keys | https://app.bootstrapware.co/chat/keys |
+| License | MIT | MIT | MIT |
 
-One plugin, two products. MCP tools manage **configuration only** — never spreadsheet rows or feedback post bodies.
+One plugin, three products. MCP tools manage **configuration only** — never spreadsheet rows, feedback post bodies, chat message bodies, or file bytes.
 
 ## Install
 
@@ -19,7 +19,7 @@ Install the plugin, open **Tools & MCP**, and click **Connect** on each Bootstra
 
 Or use **Add to Cursor (OAuth)** on each product’s Keys page.
 
-URL-only config (both products):
+URL-only config (all products):
 
 ```json
 {
@@ -31,6 +31,10 @@ URL-only config (both products):
     "bootstrapware-feedback": {
       "type": "http",
       "url": "https://feedback.bootstrapware.co/mcp"
+    },
+    "bootstrapware-chat": {
+      "type": "http",
+      "url": "https://chat.bootstrapware.co/mcp"
     }
   }
 }
@@ -49,7 +53,7 @@ Mint a test secret on the product Keys page and paste Bearer auth into `mcp.json
 ## First-run checklist
 
 1. Install plugin or URL-only MCP config.
-2. Click **Connect** on Importer and/or Feedback → sign in → Allow.
+2. Click **Connect** on Importer, Feedback, and/or Chat → sign in → Allow.
 3. Confirm tools (`list_capabilities` on each server).
 4. Smoke prompts:
 
@@ -61,6 +65,10 @@ Using bootstrapware-importer MCP, list my importers and create a draft named "Cu
 Using bootstrapware-feedback MCP, list my boards and create a draft board named "Cursor Feedback smoke", then publish it.
 ```
 
+```text
+Using bootstrapware-chat MCP, list my apps and create a draft named "Cursor Chat smoke", set allowedOrigins to localhost, then publish it. If no publishable key is in env, stop and tell me to mint one on the Keys page.
+```
+
 5. Optional: revoke connections on Keys → Active Cursor connections.
 
 ## Plugin layout
@@ -70,10 +78,11 @@ Using bootstrapware-feedback MCP, list my boards and create a draft board named 
 mcp.json                     # HTTP MCP URLs only (OAuth)
 skills/bootstrapware-importer/SKILL.md
 skills/bootstrapware-feedback/SKILL.md
+skills/bootstrapware-chat/SKILL.md
 assets/logo.png
 ```
 
 ## Security
 
 - Prefer OAuth; never put secrets in client/browser code.
-- Never send spreadsheet contents, parsed rows, or feedback post title/body through MCP tools.
+- Never send spreadsheet contents, parsed rows, feedback post title/body, chat message bodies, or file bytes through MCP tools.

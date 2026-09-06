@@ -12,8 +12,8 @@ Embeddable feature-request board: list, submit, vote, fixed statuses.
 **Modes**
 
 - **Local / free:** `createLocalAdapter` (demo and development).
-- **BYO ($9):** you store posts via `FeedbackAdapter`. Bootstrapware hosts board config only.
-- **Hosted ($19):** Bootstrapware stores posts/votes. Customer moderates in the dashboard.
+- **BYO ($9.99):** you store posts via `FeedbackAdapter`. Bootstrapware hosts board config only.
+- **Hosted ($19.99):** Bootstrapware stores posts/votes. Customer moderates in the dashboard.
 
 **Never send post title/body through MCP.** MCP manages board configuration only.
 
@@ -70,8 +70,8 @@ Dashboard-only: keys, webhooks, delete, branding, billing, Hosted inbox.
 ## Pricing
 
 - Free: local + test keys
-- BYO $9: live config
-- Hosted $19: we store posts
+- BYO $9.99: live config
+- Hosted $19.99: we store posts
 - Cancel Hosted: freeze writes, export 30 days, then delete Hosted data
 - Customer moderates; Bootstrapware provides tools only
 

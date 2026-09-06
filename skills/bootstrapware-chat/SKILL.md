@@ -77,8 +77,8 @@ Set `allowedOrigins` on the draft (localhost + production) before live. Default 
 ## Pricing
 
 - Free: local + test keys
-- BYO $9: live config; you store messages and files
-- Hosted $19: we store messages and files (1 GB included). Optional Chat storage add-on $9 raises the cap to 10 GB (not a product, not stack-discounted)
+- BYO $9.99: live config; you store messages and files
+- Hosted $19.99: we store messages and files (1 GB included). Optional Chat storage add-on $9.99 raises the cap to 10 GB (not a product, not stack-discounted)
 - Cancel Hosted: freeze writes, JSON export 30 days, then delete Hosted messages and objects
 - Customer moderates in Inbox; this is not a helpdesk
 

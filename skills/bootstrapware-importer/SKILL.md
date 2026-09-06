@@ -87,7 +87,7 @@ API key mint/revoke, webhooks, importer delete, branding, billing. Prefer `list_
 
 ### Publish vs live entitlement
 
-Publishing stores hosted config. Live `bsw_live_pub_` fetch still needs a paid Importer plan. Test publishable keys work without that.
+Publishing stores hosted config. Live `bsw_live_pub_` fetch still needs a paid Importer plan ($19.99). Test publishable keys work without that.
 
 Local `fields` schema remains free forever.
 

@@ -28,10 +28,15 @@ import { Chat, createLocalAdapter } from "@bootstrapware/chat";
 import "@bootstrapware/chat/styles.css";
 
 <Chat
-  user={{ id: session.user.id, name: session.user.name }}
+  user={{ id: session.user.id, name: session.user.name, avatarUrl: session.user.image }}
+  people={workspaceMembers.map((m) => ({ id: m.id, name: m.name, avatarUrl: m.image }))}
   adapter={createLocalAdapter({ storageKey: "demo-chat" })}
 />
 ```
+
+`people` is display and picker only. Optional `launcher` opens a corner bubble with an unread badge. Nudge with `--bsw-ch-launcher-right` / `--bsw-ch-launcher-bottom`.
+
+Bodies store plain text. The widget renders a tiny subset (`**bold**`, `_italic_`, `` `code` ``, simple lists) without HTML.
 
 ### Path B — Hosted
 
@@ -65,7 +70,7 @@ Dashboard-only: keys, webhooks, delete, branding, billing, Hosted inbox (includi
 
 ## Identity and origins
 
-Host asserts `user={{ id, name? }}`. No anonymous chat. Optional `authorToken` minted with a **secret** key via `POST /api/v1/author-tokens` when `requireAuthorToken` is true.
+Host asserts `user={{ id, name?, avatarUrl? }}`. Optional `people` for picker, titles, and avatars. No anonymous chat. Optional `authorToken` minted with a **secret** key via `POST /api/v1/author-tokens` when `requireAuthorToken` is true.
 
 Set `allowedOrigins` on the draft (localhost + production) before live. Default `["*"]` is for first-run only.
 

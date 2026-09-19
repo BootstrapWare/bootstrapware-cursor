@@ -65,7 +65,36 @@ Call `completeStep` from your app on real actions **and** pass `facts` so the wi
 
 ### Path C — BYO
 
-Same MCP flow config as Path B. Implement `OnboardAdapter` on the customer backend. Progress stays on your backend; use `onEvent` for side effects.
+Same MCP flow config as Path B. Implement `OnboardAdapter` on the customer backend. Progress stays on your backend; use `onEvent` for side effects. Pass `publishableKey` so the widget fetches published config.
+
+```tsx
+<Onboard
+  flowId="flw_..."
+  publishableKey={process.env.NEXT_PUBLIC_BSW_ONBOARD_PUBLISHABLE_KEY}
+  user={currentUser}
+  workspaceKey={workspace.id}
+  onEvent={(event, payload) => {
+    /* your analytics / CRM */
+  }}
+  adapter={{
+    getProgress: async (input) => fetch(`/api/onboard/progress?${new URLSearchParams(input as Record<string, string>)}`).then((r) => r.json()),
+    completeStep: async (input) =>
+      fetch("/api/onboard/progress", { method: "POST", body: JSON.stringify({ action: "complete", ...input }) }).then((r) => r.json()),
+    skipStep: async (input) =>
+      fetch("/api/onboard/progress", { method: "POST", body: JSON.stringify({ action: "skip", ...input }) }).then((r) => r.json()),
+    snooze: async (input) =>
+      fetch("/api/onboard/progress", { method: "POST", body: JSON.stringify({ action: "snooze", ...input }) }).then((r) => r.json()),
+    dismiss: async (input) =>
+      fetch("/api/onboard/progress", { method: "POST", body: JSON.stringify({ action: "dismiss", ...input }) }).then((r) => r.json()),
+    resume: async (input) =>
+      fetch("/api/onboard/progress", { method: "POST", body: JSON.stringify({ action: "resume", ...input }) }).then((r) => r.json()),
+    resetPersonal: async (input) =>
+      fetch("/api/onboard/progress", { method: "POST", body: JSON.stringify({ action: "resetPersonal", ...input }) }).then((r) => r.json()),
+    reportOutcome: async (input) =>
+      fetch("/api/onboard/outcomes", { method: "POST", body: JSON.stringify(input) }).then((r) => r.json()),
+  }}
+/>
+```
 
 ## MCP tools
 

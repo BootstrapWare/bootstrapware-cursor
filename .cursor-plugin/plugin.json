@@ -1,14 +1,14 @@
 {
   "name": "bootstrapware",
   "displayName": "Bootstrapware",
-  "version": "1.2.0",
-  "description": "Configure Bootstrapware Importer, Feedback, and Chat from Cursor via MCP (OAuth Connect)",
+  "version": "1.3.0",
+  "description": "Configure Bootstrapware Importer, Feedback, Chat, and Onboard from Cursor via MCP (OAuth Connect)",
   "author": {
     "name": "Bootstrapware"
   },
   "homepage": "https://bootstrapware.co",
   "repository": "https://github.com/BootstrapWare/bootstrapware-cursor",
   "license": "MIT",
-  "keywords": ["importer", "feedback", "chat", "csv", "mcp", "bootstrapware", "oauth"],
+  "keywords": ["importer", "feedback", "chat", "onboard", "onboarding", "csv", "mcp", "bootstrapware", "oauth"],
   "logo": "assets/logo.png"
 }

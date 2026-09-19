@@ -11,6 +11,10 @@
     "bootstrapware-chat": {
       "type": "http",
       "url": "https://chat.bootstrapware.co/mcp"
+    },
+    "bootstrapware-onboard": {
+      "type": "http",
+      "url": "https://onboard.bootstrapware.co/mcp"
     }
   }
 }

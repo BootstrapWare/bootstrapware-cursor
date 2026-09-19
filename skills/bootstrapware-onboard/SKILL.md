@@ -11,11 +11,11 @@ Embeddable first-run setup checklist for SaaS: required and optional steps, depe
 
 ## Install algorithm (do this in order)
 
-1. Read this skill. Call `list_capabilities` on Onboard MCP before inventing tools.
-2. If the user only needs a working UI: Path A. Do not invent keys.
-3. If they need live Hosted or BYO config: Path B or C.
+1. Read this skill.
+2. If the user only needs a working UI: Path A. Do not invent keys. Do not wait for MCP.
+3. If they need live Hosted or BYO config: Path B or C. Call `list_capabilities` on Onboard MCP before inventing tools.
 4. Wire the **real** session id and `workspaceKey` from the host app.
-5. If no publishable key is in env, **stop and ask the human**.
+5. If Path B/C and no publishable key is in env, **stop and ask the human**.
 
 ### Path A — local, zero keys
 
@@ -24,9 +24,8 @@ pnpm add @bootstrapware/onboard
 ```
 
 ```tsx
-import { Onboard, createLocalAdapter } from "@bootstrapware/onboard";
+import { Onboard, createLocalAdapter, SAAS_FIRST_RUN_ITEMS } from "@bootstrapware/onboard";
 import "@bootstrapware/onboard/styles.css";
-import { SAAS_FIRST_RUN_ITEMS } from "@bootstrapware/sdk";
 
 <Onboard
   user={{ id: session.user.id, name: session.user.name }}
@@ -43,7 +42,7 @@ Call `completeStep` from your app on real actions **and** pass `facts` so the wi
 ### Path B — Hosted
 
 1. Confirm Cursor MCP `bootstrapware-onboard` at `https://onboard.bootstrapware.co/mcp` (OAuth URL-only). If disconnected, tell the human to click **Add to Cursor (OAuth)** on https://app.bootstrapware.co/onboard/keys
-2. `list_capabilities` → `create_flow` (SaaS first-run template) → `update_draft` (items, eligibility, `allowedOrigins`) → `publish_flow`
+2. `list_capabilities` → `create_flow` (SaaS first-run items are already on the draft) → `update_draft` (`allowedOrigins` for localhost and production; only send `items` if you are changing them) → `publish_flow`
 3. `get_install_snippet`. `flowId` is real. The key is a placeholder (`YOUR_PUBLISHABLE_KEY`).
 4. If env has no `bsw_test_pub_` / `bsw_live_pub_` value, **stop**. Ask the human to mint a test publishable key at https://app.bootstrapware.co/onboard/keys
 5. Embed with the real session user id, never `"user_1"` in production.

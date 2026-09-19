@@ -53,7 +53,7 @@ Bootstrapware does **not** authenticate board visitors. Your app asserts opaque 
 
 `apiBaseUrl` defaults to `https://feedback.bootstrapware.co`.
 
-Path B: `list_capabilities` → `create_board` → `update_draft` (toggles; `name` optional) → `publish_board` → `ensure_test_publishable` (if `isNew: true`, add `envLine` to `.env.local`; if `isNew: false` and env is empty, open https://app.bootstrapware.co/feedback/keys) → `get_install_snippet`. Embed with the real session user id, never `"user_1"`.
+Path B: `list_capabilities` → `create_board` → `update_draft` (toggles; `name` optional) → `publish_board` → `ensure_test_publishable` (put `envLine` in `.env.local`; the full test publishable is returned every time) → `get_install_snippet`. Embed with the real session user id, never `"user_1"`.
 
 ## Hosted MCP (this plugin)
 

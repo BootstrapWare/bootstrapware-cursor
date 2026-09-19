@@ -43,7 +43,7 @@ Call `completeStep` from your app on real actions **and** pass `facts` so the wi
 
 1. Confirm Cursor MCP `bootstrapware-onboard` at `https://onboard.bootstrapware.co/mcp` (OAuth URL-only). If disconnected, tell the human to click **Add to Cursor (OAuth)** on https://app.bootstrapware.co/onboard/keys
 2. `list_capabilities` → `create_flow` (SaaS first-run items are already on the draft) → `update_draft` (`allowedOrigins` for localhost and production; only send `items` if you are changing them; `name` is optional) → `publish_flow`
-3. `ensure_test_publishable`. If `isNew: true`, add `envLine` to `.env.local`. If `isNew: false` and env is empty, open https://app.bootstrapware.co/onboard/keys
+3. `ensure_test_publishable`. Put `envLine` in `.env.local`. The full test publishable is returned every time.
 4. `get_install_snippet`. `flowId` is real. Use the env publishable key, never invent one.
 5. Embed with the real session user id, never `"user_1"` in production.
 6. Live Hosted requires `authorToken` minted from your BFF session (never browser secret). Bind `workspaceKey`. Default permissions omit `reset`.

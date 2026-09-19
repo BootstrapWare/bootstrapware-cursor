@@ -61,7 +61,7 @@ Publishable keys may appear in the browser. Secret keys must stay server-side. N
 
 Optional `apiBaseUrl` defaults to `https://importer.bootstrapware.co`.
 
-Path B: `list_capabilities` → `create_importer` → `update_draft` (`fields` required; `name` optional) → `publish_importer` → `ensure_test_publishable` (if `isNew: true`, add `envLine` to `.env.local`; if `isNew: false` and env is empty, open https://app.bootstrapware.co/importer/keys) → `get_install_snippet`.
+Path B: `list_capabilities` → `create_importer` → `update_draft` (`fields` required; `name` optional) → `publish_importer` → `ensure_test_publishable` (put `envLine` in `.env.local`; the full test publishable is returned every time) → `get_install_snippet`.
 
 ## Hosted MCP (this plugin)
 

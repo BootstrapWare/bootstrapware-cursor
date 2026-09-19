@@ -42,7 +42,7 @@ Bodies store plain text. The widget renders a tiny subset (`**bold**`, `_italic_
 
 1. Confirm Cursor MCP `bootstrapware-chat` at `https://chat.bootstrapware.co/mcp` (OAuth URL-only). If disconnected, tell the human to click **Add to Cursor (OAuth)** on https://app.bootstrapware.co/chat/keys
 2. `list_capabilities` → `create_app` → `update_draft` (toggles + `allowedOrigins` for localhost and production; `name` is optional) → `publish_app`
-3. `ensure_test_publishable`. If `isNew: true`, add `envLine` to `.env.local`. If `isNew: false` and env is empty, open https://app.bootstrapware.co/chat/keys
+3. `ensure_test_publishable`. Put `envLine` in `.env.local`. The full test publishable is returned every time.
 4. `get_install_snippet`. `appId` is real. Use the env publishable key, never invent one.
 5. Embed with the real session user id, never `"user_1"` in production.
 

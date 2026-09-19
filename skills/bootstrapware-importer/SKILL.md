@@ -43,12 +43,12 @@ import "@bootstrapware/importer/styles.css";
 
 ## Hosted configuration
 
-Publishable keys may appear in the browser. Secret keys must stay server-side.
+Publishable keys may appear in the browser. Secret keys must stay server-side. Never mint live or secret keys via MCP. For a test publishable key, call `ensure_test_publishable`.
 
 ```tsx
 <Importer
   importerId="imp_..."
-  publishableKey="bsw_live_pub_..."
+  publishableKey={process.env.NEXT_PUBLIC_BSW_IMPORTER_PUBLISHABLE_KEY}
   onComplete={(rows) => {
     void fetch("/api/customers/import", {
       method: "POST",
@@ -60,6 +60,8 @@ Publishable keys may appear in the browser. Secret keys must stay server-side.
 ```
 
 Optional `apiBaseUrl` defaults to `https://importer.bootstrapware.co`.
+
+Path B: `list_capabilities` → `create_importer` → `update_draft` (`fields` required; `name` optional) → `publish_importer` → `ensure_test_publishable` (if `isNew: true`, add `envLine` to `.env.local`; if `isNew: false` and env is empty, open https://app.bootstrapware.co/importer/keys) → `get_install_snippet`.
 
 ## Hosted MCP (this plugin)
 
@@ -76,14 +78,16 @@ Endpoint: `https://importer.bootstrapware.co/mcp`
 - `list_importers`
 - `get_importer`
 - `create_importer`
-- `update_draft` (does not publish)
+- `update_draft` (does not publish; name optional, fields required)
 - `publish_importer`
 - `get_published_config`
+- `get_install_snippet`
+- `ensure_test_publishable`
 - `list_capabilities`
 
 ### Dashboard-only (do not invent MCP tools)
 
-API key mint/revoke, webhooks, importer delete, branding, billing. Prefer `list_capabilities` and the dashboard at https://app.bootstrapware.co.
+Live/secret API key mint/revoke, webhooks, importer delete, branding, billing. Test publishable: `ensure_test_publishable`. Prefer `list_capabilities` and the dashboard at https://app.bootstrapware.co.
 
 ### Publish vs live entitlement
 

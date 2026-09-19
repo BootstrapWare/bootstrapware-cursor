@@ -15,7 +15,7 @@ Embeddable feature-request board: list, submit, vote, fixed statuses.
 - **BYO ($9.99):** you store posts via `FeedbackAdapter`. Bootstrapware hosts board config only.
 - **Hosted ($19.99):** Bootstrapware stores posts/votes. Customer moderates in the dashboard.
 
-**Never send post title/body through MCP.** MCP manages board configuration only.
+**Never send post title/body through MCP.** MCP manages board configuration only. Never mint live or secret API keys via MCP. For a test publishable key, call `ensure_test_publishable`.
 
 ## Install
 
@@ -46,12 +46,14 @@ Bootstrapware does **not** authenticate board visitors. Your app asserts opaque 
 ```tsx
 <Feedback
   boardId="brd_..."
-  publishableKey="bsw_live_pub_..."
+  publishableKey={process.env.NEXT_PUBLIC_BSW_FEEDBACK_PUBLISHABLE_KEY}
   user={currentUser}
 />
 ```
 
 `apiBaseUrl` defaults to `https://feedback.bootstrapware.co`.
+
+Path B: `list_capabilities` → `create_board` → `update_draft` (toggles; `name` optional) → `publish_board` → `ensure_test_publishable` (if `isNew: true`, add `envLine` to `.env.local`; if `isNew: false` and env is empty, open https://app.bootstrapware.co/feedback/keys) → `get_install_snippet`. Embed with the real session user id, never `"user_1"`.
 
 ## Hosted MCP (this plugin)
 
@@ -63,9 +65,9 @@ Endpoint: `https://feedback.bootstrapware.co/mcp`
 
 ### Tools
 
-Board config only: `list_boards` / `list_importers`-style board tools, `get_published_config`, `list_capabilities`. No post bodies.
+Board config only: `list_boards`, `get_board`, `create_board`, `update_draft` (name optional), `publish_board`, `get_published_config`, `get_install_snippet`, `ensure_test_publishable`, `list_capabilities`. No post bodies.
 
-Dashboard-only: keys, webhooks, delete, branding, billing, Hosted inbox.
+Dashboard-only: live/secret keys, webhooks, delete, branding, billing, Hosted inbox. Test publishable: `ensure_test_publishable`.
 
 ## Pricing
 

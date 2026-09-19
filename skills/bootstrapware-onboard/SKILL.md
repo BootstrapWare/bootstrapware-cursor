@@ -7,7 +7,7 @@ description: Configure and integrate Bootstrapware Onboard (React package, BYO/H
 
 Embeddable first-run setup checklist for SaaS: required and optional steps, dependencies, eligibility, fact reconciliation, dismiss, and snooze. Userflow and similar products also offer MCP — Onboard is not unique in that regard.
 
-**Never send host context, flags, facts, or progress payloads through MCP.** Never mint API keys via MCP. Never invent `user.id` for production.
+**Never send host context, flags, facts, or progress payloads through MCP.** Never mint live or secret API keys via MCP. For a test publishable key, call `ensure_test_publishable`. Never invent `user.id` for production.
 
 ## Install algorithm (do this in order)
 
@@ -15,7 +15,7 @@ Embeddable first-run setup checklist for SaaS: required and optional steps, depe
 2. If the user only needs a working UI: Path A. Do not invent keys. Do not wait for MCP.
 3. If they need live Hosted or BYO config: Path B or C. Call `list_capabilities` on Onboard MCP before inventing tools.
 4. Wire the **real** session id and `workspaceKey` from the host app.
-5. If Path B/C and no publishable key is in env, **stop and ask the human**.
+5. For a test publishable key, call `ensure_test_publishable`.
 
 ### Path A — local, zero keys
 
@@ -42,9 +42,9 @@ Call `completeStep` from your app on real actions **and** pass `facts` so the wi
 ### Path B — Hosted
 
 1. Confirm Cursor MCP `bootstrapware-onboard` at `https://onboard.bootstrapware.co/mcp` (OAuth URL-only). If disconnected, tell the human to click **Add to Cursor (OAuth)** on https://app.bootstrapware.co/onboard/keys
-2. `list_capabilities` → `create_flow` (SaaS first-run items are already on the draft) → `update_draft` (`allowedOrigins` for localhost and production; only send `items` if you are changing them) → `publish_flow`
-3. `get_install_snippet`. `flowId` is real. The key is a placeholder (`YOUR_PUBLISHABLE_KEY`).
-4. If env has no `bsw_test_pub_` / `bsw_live_pub_` value, **stop**. Ask the human to mint a test publishable key at https://app.bootstrapware.co/onboard/keys
+2. `list_capabilities` → `create_flow` (SaaS first-run items are already on the draft) → `update_draft` (`allowedOrigins` for localhost and production; only send `items` if you are changing them; `name` is optional) → `publish_flow`
+3. `ensure_test_publishable`. If `isNew: true`, add `envLine` to `.env.local`. If `isNew: false` and env is empty, open https://app.bootstrapware.co/onboard/keys
+4. `get_install_snippet`. `flowId` is real. Use the env publishable key, never invent one.
 5. Embed with the real session user id, never `"user_1"` in production.
 6. Live Hosted requires `authorToken` minted from your BFF session (never browser secret). Bind `workspaceKey`. Default permissions omit `reset`.
 
@@ -97,9 +97,9 @@ Same MCP flow config as Path B. Implement `OnboardAdapter` on the customer backe
 
 ## MCP tools
 
-`list_flows`, `get_flow`, `create_flow`, `update_draft`, `publish_flow`, `list_revisions`, `restore_revision`, `get_published_config`, `get_install_snippet`, `list_capabilities`.
+`list_flows`, `get_flow`, `create_flow`, `update_draft` (name optional), `publish_flow`, `list_revisions`, `restore_revision`, `get_published_config`, `get_install_snippet`, `ensure_test_publishable`, `list_capabilities`.
 
-Dashboard-only: keys, webhooks, delete, branding, billing, Hosted summaries export/preview.
+Dashboard-only: live/secret keys, webhooks, delete, branding, billing, Hosted summaries export/preview. Test publishable: `ensure_test_publishable`.
 
 `create_flow` / `publish_flow` return `nextSteps[]`.
 

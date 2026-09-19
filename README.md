@@ -70,11 +70,11 @@ Using bootstrapware-feedback MCP, list my boards and create a draft board named 
 ```
 
 ```text
-Using bootstrapware-chat MCP, list my apps and create a draft named "Cursor Chat smoke", set allowedOrigins to localhost, then publish it. If no publishable key is in env, stop and tell me to mint one on the Keys page.
+Using bootstrapware-chat MCP, list my apps and create a draft named "Cursor Chat smoke", set allowedOrigins to localhost, then publish it. Call ensure_test_publishable and get_install_snippet.
 ```
 
 ```text
-Using bootstrapware-onboard MCP, list my flows and create a draft named "Cursor Onboard smoke" from the SaaS first-run template, set allowedOrigins to localhost, then publish it. If no publishable key is in env, stop and tell me to mint one on the Keys page.
+Using bootstrapware-onboard MCP, list my flows and create a draft named "Cursor Onboard smoke" from the SaaS first-run template, set allowedOrigins to localhost, then publish it. Call ensure_test_publishable and get_install_snippet.
 ```
 
 5. Optional: revoke connections on Keys → Active Cursor connections.

@@ -7,7 +7,7 @@ description: Configure and integrate Bootstrapware Chat (React package, BYO/Host
 
 Embeddable private 1:1 and group messaging (max 20) inside an authenticated product. Not Stream, Sendbird, Slack, or a helpdesk.
 
-**Never send message body or file bytes through MCP.** Never mint API keys via MCP. Never invent `user.id` for production.
+**Never send message body or file bytes through MCP.** Never mint live or secret API keys via MCP. For a test publishable key, call `ensure_test_publishable`. Never invent `user.id` for production.
 
 ## Install algorithm (do this in order)
 
@@ -15,7 +15,7 @@ Embeddable private 1:1 and group messaging (max 20) inside an authenticated prod
 2. If the user only needs a working UI: Path A. Do not invent keys.
 3. If they need live Hosted or BYO config: Path B or C.
 4. Wire the **real** session id from the host app.
-5. If no publishable key is in env, **stop and ask the human**.
+5. For a test publishable key, call `ensure_test_publishable`.
 
 ### Path A — local, zero keys
 
@@ -41,9 +41,9 @@ Bodies store plain text. The widget renders a tiny subset (`**bold**`, `_italic_
 ### Path B — Hosted
 
 1. Confirm Cursor MCP `bootstrapware-chat` at `https://chat.bootstrapware.co/mcp` (OAuth URL-only). If disconnected, tell the human to click **Add to Cursor (OAuth)** on https://app.bootstrapware.co/chat/keys
-2. `list_capabilities` → `create_app` → `update_draft` (toggles + `allowedOrigins` for localhost and production) → `publish_app`
-3. `get_install_snippet`. `appId` is real. The key is a placeholder (`YOUR_PUBLISHABLE_KEY`).
-4. If env has no `bsw_test_pub_` / `bsw_live_pub_` value, **stop**. Ask the human to mint a test publishable key at https://app.bootstrapware.co/chat/keys
+2. `list_capabilities` → `create_app` → `update_draft` (toggles + `allowedOrigins` for localhost and production; `name` is optional) → `publish_app`
+3. `ensure_test_publishable`. If `isNew: true`, add `envLine` to `.env.local`. If `isNew: false` and env is empty, open https://app.bootstrapware.co/chat/keys
+4. `get_install_snippet`. `appId` is real. Use the env publishable key, never invent one.
 5. Embed with the real session user id, never `"user_1"` in production.
 
 ```tsx
@@ -62,9 +62,9 @@ Same MCP app config as Path B. Implement `ChatAdapter` on the customer backend (
 
 ## MCP tools
 
-`list_apps`, `get_app`, `create_app`, `update_draft`, `publish_app`, `get_published_config`, `get_install_snippet`, `list_capabilities`.
+`list_apps`, `get_app`, `create_app`, `update_draft` (name optional), `publish_app`, `get_published_config`, `get_install_snippet`, `ensure_test_publishable`, `list_capabilities`.
 
-Dashboard-only: keys, webhooks, delete, branding, billing, Hosted inbox (including Team send), message search.
+Dashboard-only: live/secret keys, webhooks, delete, branding, billing, Hosted inbox (including Team send), message search. Test publishable: `ensure_test_publishable`.
 
 `create_app` / `publish_app` return `nextSteps[]`.
 

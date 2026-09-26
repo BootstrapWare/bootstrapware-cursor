@@ -15,6 +15,10 @@
     "bootstrapware-onboard": {
       "type": "http",
       "url": "https://onboard.bootstrapware.co/mcp"
+    },
+    "bootstrapware-comments": {
+      "type": "http",
+      "url": "https://comments.bootstrapware.co/mcp"
     }
   }
 }

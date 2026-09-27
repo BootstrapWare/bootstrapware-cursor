@@ -4,12 +4,12 @@ Configure **Importer**, **Feedback**, **Chat**, **Onboard**, **Comments**, and *
 
 | | Importer | Feedback | Chat | Onboard | Comments | RFQ |
 | --- | --- | --- | --- | --- | --- | --- |
-| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback | https://bootstrapware.co/chat | https://bootstrapware.co/onboard | https://bootstrapware.co/comments | Dashboard only: https://app.bootstrapware.co/rfq |
-| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` | `https://chat.bootstrapware.co/mcp` | `https://onboard.bootstrapware.co/mcp` | `https://comments.bootstrapware.co/mcp` | `https://rfq.bootstrapware.co/mcp` |
+| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback | https://bootstrapware.co/chat | https://bootstrapware.co/onboard | https://bootstrapware.co/comments | https://bootstrapware.co/rfq |
+| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` | `https://chat.bootstrapware.co/mcp` | `https://onboard.bootstrapware.co/mcp` | `https://comments.bootstrapware.co/mcp` | `https://bswrfq-production.up.railway.app/mcp` |
 | Keys | https://app.bootstrapware.co/importer/keys | https://app.bootstrapware.co/feedback/keys | https://app.bootstrapware.co/chat/keys | https://app.bootstrapware.co/onboard/keys | https://app.bootstrapware.co/comments/keys | https://app.bootstrapware.co/rfq/keys |
 | License | MIT | MIT | MIT | MIT | MIT | MIT |
 
-One plugin, six products. RFQ has no public marketing page. `https://rfq.bootstrapware.co` is a host name only. `@bootstrapware/rfq` is not npm-published and this plugin is not a marketplace listing for RFQ. MCP tools manage **configuration only** — never spreadsheet rows, feedback post bodies, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, or file bytes.
+One plugin, six products. RFQ MCP is on the Railway hostname until `rfq.bootstrapware.co` is attached. This plugin is not a marketplace listing for RFQ. MCP tools manage **configuration only** — never spreadsheet rows, feedback post bodies, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, or file bytes.
 
 ## Install
 
@@ -46,7 +46,7 @@ URL-only config (all products):
     },
     "bootstrapware-rfq": {
       "type": "http",
-      "url": "https://rfq.bootstrapware.co/mcp"
+      "url": "https://bswrfq-production.up.railway.app/mcp"
     }
   }
 }

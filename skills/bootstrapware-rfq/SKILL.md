@@ -15,7 +15,7 @@ Embeddable buyer–supplier requests for quote. Surfaces: `RfqRequester`, `RfqSu
 - **BYO ($9.99):** you store RFQ records via `RfqAdapter` or `createByoAdapter`. Bootstrapware hosts app config only.
 - **Hosted ($19.99):** Bootstrapware stores RFQ records. Attachment bytes stay on the host. Selection is intent only.
 
-`@bootstrapware/rfq` is not published to npm and is not marketplace-listed. Do not npm publish it. Do not invent Stripe price IDs. Env names are `STRIPE_PRICE_RFQ_BYO` and `STRIPE_PRICE_RFQ_HOSTED`. Public docs: https://bootstrapware.co/rfq/docs/agents.
+`@bootstrapware/rfq` is on npm. Do not invent Stripe price IDs. Env names are `STRIPE_PRICE_RFQ_BYO` and `STRIPE_PRICE_RFQ_HOSTED`. Public docs: https://bootstrapware.co/rfq/docs/agents.
 
 **Never send RFQ titles, quotes, prices, supplier lists, or file bytes through MCP.** MCP manages app configuration only. Never mint live or secret API keys via MCP. For a test publishable key, call `ensure_rfq_test_publishable`.
 
@@ -38,7 +38,7 @@ Bootstrapware does **not** authenticate RFQ visitors. Your app asserts opaque `a
 
 `scope` (`appId`, `tenantKey`) is a widget prop. Those strings are not proof of access.
 
-Optional `authorToken` is minted on your server with an RFQ **secret** key (`POST https://rfq.bootstrapware.co/api/v1/author-tokens`). Prefix `bsw_rfqauth_v1.`. Never mint it in the browser or via MCP. Pass `renewAuthorToken` so the widget can refresh it. The secret stays in server env (`BSW_RFQ_SECRET`), never `NEXT_PUBLIC_*`.
+Optional `authorToken` is minted on your server with an RFQ **secret** key (`POST https://bswrfq-production.up.railway.app/api/v1/author-tokens`). Prefix `bsw_rfqauth_v1.`. Never mint it in the browser or via MCP. Pass `renewAuthorToken` so the widget can refresh it. The secret stays in server env (`BSW_RFQ_SECRET`), never `NEXT_PUBLIC_*`.
 
 ## Local
 
@@ -65,7 +65,7 @@ const adapter = createHostedAdapter({
 });
 ```
 
-`RfqSupplier` and `RfqComparison` take the same scope, actor, and adapter. `apiBaseUrl` defaults to `https://rfq.bootstrapware.co`. That host name is not a DNS record.
+`RfqSupplier` and `RfqComparison` take the same scope, actor, and adapter. `apiBaseUrl` defaults to `https://rfq.bootstrapware.co`. Until that DNS record exists, pass `https://bswrfq-production.up.railway.app`.
 
 Path B: `list_rfq_capabilities` → `create_rfq_app` → `update_rfq_draft` (config and `allowedOrigins`; `name` optional) → `publish_rfq_app` → `ensure_rfq_test_publishable` (put `envLine` in `.env.local`; the full test publishable is returned every time) → `get_rfq_install_snippet`. Embed `RfqRequester`, `RfqSupplier`, or `RfqComparison` with the real session actor id.
 
@@ -75,7 +75,7 @@ Path B: `list_rfq_capabilities` → `create_rfq_app` → `update_rfq_draft` (con
 
 ## Hosted MCP (this plugin)
 
-Endpoint: `https://rfq.bootstrapware.co/mcp`
+Endpoint: `https://bswrfq-production.up.railway.app/mcp`
 
 Server id: `bootstrapware-rfq`
 

@@ -4,7 +4,7 @@ Public source: https://github.com/BootstrapWare/bootstrapware-cursor
 
 Use this after the GitHub repo is public and you are ready for Cursor review. **Do not claim a marketplace listing is live until Cursor approves it.**
 
-RFQ is in the plugin source (`bootstrapware-rfq` at `https://rfq.bootstrapware.co/mcp`). Do not add RFQ to a marketplace submission from this checklist. `@bootstrapware/rfq` is not npm-published.
+RFQ is in the plugin source (`bootstrapware-rfq` at `https://bswrfq-production.up.railway.app/mcp`). Do not add RFQ to a marketplace submission from this checklist.
 
 ## Listing copy (paste into https://cursor.com/marketplace/publish)
 

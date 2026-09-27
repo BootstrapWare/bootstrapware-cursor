@@ -15,7 +15,7 @@ Embeddable buyer–supplier requests for quote. Surfaces: `RfqRequester`, `RfqSu
 - **BYO ($9.99):** you store RFQ records via `RfqAdapter` or `createByoAdapter`. Bootstrapware hosts app config only.
 - **Hosted ($19.99):** Bootstrapware stores RFQ records. Attachment bytes stay on the host. Selection is intent only.
 
-`@bootstrapware/rfq` is not published to npm and is not marketplace-listed. Do not npm publish it. Do not invent Stripe price IDs. Env names are `STRIPE_PRICE_RFQ_BYO` and `STRIPE_PRICE_RFQ_HOSTED`.
+`@bootstrapware/rfq` is not published to npm and is not marketplace-listed. Do not npm publish it. Do not invent Stripe price IDs. Env names are `STRIPE_PRICE_RFQ_BYO` and `STRIPE_PRICE_RFQ_HOSTED`. Public docs: https://bootstrapware.co/rfq/docs/agents.
 
 **Never send RFQ titles, quotes, prices, supplier lists, or file bytes through MCP.** MCP manages app configuration only. Never mint live or secret API keys via MCP. For a test publishable key, call `ensure_rfq_test_publishable`.
 
@@ -96,6 +96,7 @@ Dashboard-only: live and secret key mint, webhooks, app delete, branding, billin
 - Free: local + test keys
 - BYO $9.99: live config; you store records
 - Hosted $19.99: we store records, 1 GiB per environment, attachment bytes excluded
+- No seat tax and no per-quote invoice. Stack discount is company-wide: 25% off the second paid product’s list, 35% off the third and later.
 - Cancel Hosted: freeze writes, export 30 days, then delete Hosted data
 - Hosted → BYO keeps the rows and does not start the 30-day clock
 - Selection is intent only

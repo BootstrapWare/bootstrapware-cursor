@@ -1,15 +1,15 @@
 # Bootstrapware Cursor plugin
 
-Configure **Importer**, **Feedback**, **Chat**, **Onboard**, and **Comments** from Cursor via MCP, plus agent skills for `@bootstrapware/importer`, `@bootstrapware/feedback`, `@bootstrapware/chat`, `@bootstrapware/onboard`, and `@bootstrapware/comments`.
+Configure **Importer**, **Feedback**, **Chat**, **Onboard**, **Comments**, and **RFQ** from Cursor via MCP, plus agent skills for `@bootstrapware/importer`, `@bootstrapware/feedback`, `@bootstrapware/chat`, `@bootstrapware/onboard`, `@bootstrapware/comments`, and `@bootstrapware/rfq`.
 
-| | Importer | Feedback | Chat | Onboard | Comments |
-| --- | --- | --- | --- | --- | --- |
-| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback | https://bootstrapware.co/chat | https://bootstrapware.co/onboard | https://bootstrapware.co/comments |
-| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` | `https://chat.bootstrapware.co/mcp` | `https://onboard.bootstrapware.co/mcp` | `https://comments.bootstrapware.co/mcp` |
-| Keys | https://app.bootstrapware.co/importer/keys | https://app.bootstrapware.co/feedback/keys | https://app.bootstrapware.co/chat/keys | https://app.bootstrapware.co/onboard/keys | https://app.bootstrapware.co/comments/keys |
-| License | MIT | MIT | MIT | MIT | MIT |
+| | Importer | Feedback | Chat | Onboard | Comments | RFQ |
+| --- | --- | --- | --- | --- | --- | --- |
+| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback | https://bootstrapware.co/chat | https://bootstrapware.co/onboard | https://bootstrapware.co/comments | Dashboard only: https://app.bootstrapware.co/rfq |
+| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` | `https://chat.bootstrapware.co/mcp` | `https://onboard.bootstrapware.co/mcp` | `https://comments.bootstrapware.co/mcp` | `https://rfq.bootstrapware.co/mcp` |
+| Keys | https://app.bootstrapware.co/importer/keys | https://app.bootstrapware.co/feedback/keys | https://app.bootstrapware.co/chat/keys | https://app.bootstrapware.co/onboard/keys | https://app.bootstrapware.co/comments/keys | https://app.bootstrapware.co/rfq/keys |
+| License | MIT | MIT | MIT | MIT | MIT | MIT |
 
-One plugin, five products. MCP tools manage **configuration only** — never spreadsheet rows, feedback post bodies, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, or customer directories.
+One plugin, six products. RFQ has no public marketing page. `https://rfq.bootstrapware.co` is a host name only. `@bootstrapware/rfq` is not npm-published and this plugin is not a marketplace listing for RFQ. MCP tools manage **configuration only** — never spreadsheet rows, feedback post bodies, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, or file bytes.
 
 ## Install
 
@@ -43,6 +43,10 @@ URL-only config (all products):
     "bootstrapware-comments": {
       "type": "http",
       "url": "https://comments.bootstrapware.co/mcp"
+    },
+    "bootstrapware-rfq": {
+      "type": "http",
+      "url": "https://rfq.bootstrapware.co/mcp"
     }
   }
 }
@@ -61,8 +65,8 @@ Mint a test secret on the product Keys page and paste Bearer auth into `mcp.json
 ## First-run checklist
 
 1. Install plugin or URL-only MCP config.
-2. Click **Connect** on Importer, Feedback, Chat, Onboard, and/or Comments → sign in → Allow.
-3. Confirm tools (`list_capabilities` on Importer, Feedback, Chat, and Onboard; `list_comment_capabilities` on Comments).
+2. Click **Connect** on Importer, Feedback, Chat, Onboard, Comments, and/or RFQ → sign in → Allow.
+3. Confirm tools (`list_capabilities` on Importer, Feedback, Chat, and Onboard; `list_comment_capabilities` on Comments; `list_rfq_capabilities` on RFQ).
 4. Smoke prompts:
 
 ```text
@@ -85,6 +89,10 @@ Using bootstrapware-onboard MCP, list my flows and create a draft named "Cursor 
 Using bootstrapware-comments MCP, list my comment apps and create a draft named "Cursor Comments smoke", set allowedOrigins to localhost, then publish it. Call ensure_comment_test_publishable and get_comment_install_snippet.
 ```
 
+```text
+Using bootstrapware-rfq MCP, list my RFQ apps and create a draft named "Cursor RFQ smoke", set allowedOrigins to localhost, then publish it. Call ensure_rfq_test_publishable and get_rfq_install_snippet. Do not list RFQs or submit quotes.
+```
+
 5. Optional: revoke connections on Keys → Active Cursor connections.
 
 ## Plugin layout
@@ -97,10 +105,11 @@ skills/bootstrapware-feedback/SKILL.md
 skills/bootstrapware-chat/SKILL.md
 skills/bootstrapware-onboard/SKILL.md
 skills/bootstrapware-comments/SKILL.md
+skills/bootstrapware-rfq/SKILL.md
 assets/logo.png
 ```
 
 ## Security
 
 - Prefer OAuth; never put secrets in client/browser code.
-- Never send spreadsheet contents, parsed rows, feedback post title/body, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, or customer directories through MCP tools.
+- Never send spreadsheet contents, parsed rows, feedback post title/body, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, or file bytes through MCP tools.

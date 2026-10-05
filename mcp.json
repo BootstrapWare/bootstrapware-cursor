@@ -23,6 +23,10 @@
     "bootstrapware-rfq": {
       "type": "http",
       "url": "https://bswrfq-production.up.railway.app/mcp"
+    },
+    "bootstrapware-answers": {
+      "type": "http",
+      "url": "https://answers.bootstrapware.co/mcp"
     }
   }
 }

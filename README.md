@@ -1,15 +1,15 @@
 # Bootstrapware Cursor plugin
 
-Configure **Importer**, **Feedback**, **Chat**, **Onboard**, **Comments**, and **RFQ** from Cursor via MCP, plus agent skills for `@bootstrapware/importer`, `@bootstrapware/feedback`, `@bootstrapware/chat`, `@bootstrapware/onboard`, `@bootstrapware/comments`, and `@bootstrapware/rfq`.
+Configure **Importer**, **Feedback**, **Chat**, **Onboard**, **Comments**, **RFQ**, and **Answers** from Cursor via MCP, plus agent skills for `@bootstrapware/importer`, `@bootstrapware/feedback`, `@bootstrapware/chat`, `@bootstrapware/onboard`, `@bootstrapware/comments`, `@bootstrapware/rfq`, and `@bootstrapware/answers`.
 
-| | Importer | Feedback | Chat | Onboard | Comments | RFQ |
-| --- | --- | --- | --- | --- | --- | --- |
-| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback | https://bootstrapware.co/chat | https://bootstrapware.co/onboard | https://bootstrapware.co/comments | https://bootstrapware.co/rfq |
-| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` | `https://chat.bootstrapware.co/mcp` | `https://onboard.bootstrapware.co/mcp` | `https://comments.bootstrapware.co/mcp` | `https://bswrfq-production.up.railway.app/mcp` |
-| Keys | https://app.bootstrapware.co/importer/keys | https://app.bootstrapware.co/feedback/keys | https://app.bootstrapware.co/chat/keys | https://app.bootstrapware.co/onboard/keys | https://app.bootstrapware.co/comments/keys | https://app.bootstrapware.co/rfq/keys |
-| License | MIT | MIT | MIT | MIT | MIT | MIT |
+| | Importer | Feedback | Chat | Onboard | Comments | RFQ | Answers |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Homepage | https://bootstrapware.co/importer | https://bootstrapware.co/feedback | https://bootstrapware.co/chat | https://bootstrapware.co/onboard | https://bootstrapware.co/comments | https://bootstrapware.co/rfq | https://bootstrapware.co/answers |
+| MCP | `https://importer.bootstrapware.co/mcp` | `https://feedback.bootstrapware.co/mcp` | `https://chat.bootstrapware.co/mcp` | `https://onboard.bootstrapware.co/mcp` | `https://comments.bootstrapware.co/mcp` | `https://bswrfq-production.up.railway.app/mcp` | `https://answers.bootstrapware.co/mcp` |
+| Keys | https://app.bootstrapware.co/importer/keys | https://app.bootstrapware.co/feedback/keys | https://app.bootstrapware.co/chat/keys | https://app.bootstrapware.co/onboard/keys | https://app.bootstrapware.co/comments/keys | https://app.bootstrapware.co/rfq/keys | https://app.bootstrapware.co/answers/keys |
+| License | MIT | MIT | MIT | MIT | MIT | MIT | MIT |
 
-One plugin, six products. RFQ MCP is on the Railway hostname until `rfq.bootstrapware.co` is attached. This plugin is not a marketplace listing for RFQ. MCP tools manage **configuration only** — never spreadsheet rows, feedback post bodies, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, or file bytes.
+One plugin, seven products. RFQ MCP is on the Railway hostname until `rfq.bootstrapware.co` is attached. This plugin is not a marketplace listing for RFQ. MCP tools manage **configuration only**: never spreadsheet rows, feedback post bodies, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, visitor questions, file bytes, or provider keys.
 
 ## Install
 
@@ -47,6 +47,10 @@ URL-only config (all products):
     "bootstrapware-rfq": {
       "type": "http",
       "url": "https://bswrfq-production.up.railway.app/mcp"
+    },
+    "bootstrapware-answers": {
+      "type": "http",
+      "url": "https://answers.bootstrapware.co/mcp"
     }
   }
 }
@@ -65,8 +69,8 @@ Mint a test secret on the product Keys page and paste Bearer auth into `mcp.json
 ## First-run checklist
 
 1. Install plugin or URL-only MCP config.
-2. Click **Connect** on Importer, Feedback, Chat, Onboard, Comments, and/or RFQ → sign in → Allow.
-3. Confirm tools (`list_capabilities` on Importer, Feedback, Chat, and Onboard; `list_comment_capabilities` on Comments; `list_rfq_capabilities` on RFQ).
+2. Click **Connect** on Importer, Feedback, Chat, Onboard, Comments, RFQ, and/or Answers → sign in → Allow.
+3. Confirm tools (`list_capabilities` on Importer, Feedback, Chat, and Onboard; `list_comment_capabilities` on Comments; `list_rfq_capabilities` on RFQ; `list_answers_capabilities` on Answers).
 4. Smoke prompts:
 
 ```text
@@ -93,6 +97,10 @@ Using bootstrapware-comments MCP, list my comment apps and create a draft named 
 Using bootstrapware-rfq MCP, list my RFQ apps and create a draft named "Cursor RFQ smoke", set allowedOrigins to localhost, then publish it. Call ensure_rfq_test_publishable and get_rfq_install_snippet. Do not list RFQs or submit quotes.
 ```
 
+```text
+Using bootstrapware-answers MCP, list my answers apps and create a draft named "Cursor Answers smoke", set allowedOrigins to localhost, then publish it. Call ensure_answers_test_publishable and get_answers_install_snippet. Do not send questions, file bytes, or provider keys.
+```
+
 5. Optional: revoke connections on Keys → Active Cursor connections.
 
 ## Plugin layout
@@ -106,10 +114,11 @@ skills/bootstrapware-chat/SKILL.md
 skills/bootstrapware-onboard/SKILL.md
 skills/bootstrapware-comments/SKILL.md
 skills/bootstrapware-rfq/SKILL.md
+skills/bootstrapware-answers/SKILL.md
 assets/logo.png
 ```
 
 ## Security
 
 - Prefer OAuth; never put secrets in client/browser code.
-- Never send spreadsheet contents, parsed rows, feedback post title/body, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, or file bytes through MCP tools.
+- Never send spreadsheet contents, parsed rows, feedback post title/body, chat message bodies, host context/flags/facts, progress payloads, comment bodies, resource content, customer directories, RFQ titles, quotes, prices, supplier lists, visitor questions, file bytes, or provider keys through MCP tools.

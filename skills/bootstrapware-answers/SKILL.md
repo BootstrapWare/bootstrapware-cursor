@@ -57,8 +57,10 @@ Try these questions, in order, on one session:
 3. `ensure_answers_test_publishable`. Put `envLine` in `.env.local`. The full test publishable is returned every time. The env name is `NEXT_PUBLIC_BSW_ANSWERS_PUBLISHABLE_KEY`.
 4. `get_answers_install_snippet`. `appId` is real. Use `process.env.NEXT_PUBLIC_BSW_ANSWERS_PUBLISHABLE_KEY`. Never invent a key and never put a secret in the snippet.
 5. Keep the adapter in the snippet. It posts to `POST /api/v1/ask?appId=`. Omitting `adapter` does not fetch.
+6. `add_answers_url_source` for each dedicated public page whose body already states the fact. Do not stop at the homepage.
+7. After the index job succeeds, tell the human to retest in the dashboard playground: a product question, a follow-up that names no product, and a question the pages do not answer.
 
-`create_answers_app` `nextSteps`: update the draft, publish, `ensure_answers_test_publishable`, then `get_answers_install_snippet`. The React package does not call Hosted ask unless you pass an adapter. `publish_answers_app` names the test publishable tool and tells you to point the adapter at `POST /api/v1/ask`.
+`create_answers_app` `nextSteps`: update the draft, publish, `ensure_answers_test_publishable`, `get_answers_install_snippet`, then add dedicated URL sources and retest in the playground. The React package does not call Hosted ask unless you pass an adapter. `publish_answers_app` names the test publishable tool and tells you to point the adapter at `POST /api/v1/ask`.
 
 ```tsx
 import { Answers, createByoAdapter } from "@bootstrapware/answers";
@@ -138,7 +140,16 @@ App config and public URL sources only: `list_answers_apps`, `get_answers_app`, 
 
 Dashboard-only: live and secret key mint, webhooks, app delete, billing, file upload, manual sources, conversations, unanswered text, provider secrets, export, purge. Test publishable: `ensure_answers_test_publishable`.
 
-`create_answers_app` and `publish_answers_app` return `nextSteps[]`. Call `list_answers_capabilities` before using any other tool name.
+`create_answers_app` and `publish_answers_app` return `nextSteps[]`. Call `list_answers_capabilities` before using any other tool name. Capabilities include `sourceAdvice`: index dedicated public pages, name the product in the priced sentence, and retest follow-ups in the playground.
+
+## Publish pages that can be quoted
+
+Hosted quotes the body after it drops navigation chrome. A homepage of product blurbs is a weak first source.
+
+1. Add a dedicated public URL per fact (`/pricing`, hours, returns).
+2. Put the product name and the price in the same sentence.
+3. Put each product's comparison on that product's page.
+4. Unanswered is success when the pages do not have the fact. Add a URL or a dashboard manual FAQ. Do not send the question through MCP.
 
 Publishing stores hosted app config. There is no `GET /api/v1/config/:appId` route. `POST /api/v1/ask` reads the published revision.
 
@@ -159,7 +170,7 @@ The widget stores `ans_` plus 24 hex in `sessionStorage` under `bsw_an_session:<
 
 Hosted knowledge kinds are website root, sitemap, single public URL, PDF, DOCX, TXT, Markdown, and manual FAQ. MCP can add a public URL and reindex it. Files, manual text, conversations, and unanswered question text stay on the dashboard.
 
-Every Hosted source is visitor-readable. Do not upload private runbooks or secrets. Crawl is public `http` and `https` only. A failed crawl leaves the last good index in place.
+Every Hosted source is visitor-readable. Do not upload private runbooks or secrets. Crawl is public `http` and `https` only. A failed crawl leaves the last good index in place. A page that is only navigation chrome is rejected and does not become a citation.
 
 Citations are ids from the retrieved revision. Unsupported and plausible-false questions return `unanswered` and the configured fallback. There is no model-memory fallback.
 

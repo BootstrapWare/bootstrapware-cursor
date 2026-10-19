@@ -22,7 +22,7 @@
     },
     "bootstrapware-rfq": {
       "type": "http",
-      "url": "https://bswrfq-production.up.railway.app/mcp"
+      "url": "https://rfq.bootstrapware.co/mcp"
     },
     "bootstrapware-answers": {
       "type": "http",
